@@ -171,6 +171,9 @@ for d in (train_dir, test_dir):
 
         for file in os.listdir(city_dir_path): # Goes over all images in each city folder
             try:
+                if os.path.exists(os.path.join(city_dir_outdoor, file)):
+                    continue
+                    
                 image_path = os.path.join(city_dir_path, file)
                 img = Image.open(image_path)
                 input_img = V(tf(img).unsqueeze(0))
