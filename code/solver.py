@@ -369,12 +369,12 @@ class Solver(object):
                 label_trg = label_org[rand_idx]
 
                 if dataset == 'CelebA':
-                    c_org = self.label2onehot(label_org, self.c2_dim)
-                    c_trg = self.label2onehot(label_trg, self.c2_dim)
-                    zero = torch.zeros(x_real.size(0), self.c_dim)
-                    mask = self.label2onehot(torch.ones(x_real.size(0)), 2)
-                    c_org = torch.cat([zero, c_org, mask], dim=1)
-                    c_trg = torch.cat([zero, c_trg, mask], dim=1)
+                    c_org = self.label2onehot(label_org, self.c_dim)
+                    c_trg = self.label2onehot(label_trg, self.c_dim)
+                    zero = torch.zeros(x_real.size(0), self.c2_dim)
+                    mask = self.label2onehot(torch.zeros(x_real.size(0)), 2)
+                    c_org = torch.cat([c_org, zero, mask], dim=1)
+                    c_trg = torch.cat([c_trg, zero, mask], dim=1)
                 elif dataset == 'RaFD':
                     c_org = self.label2onehot(label_org, self.c2_dim)
                     c_trg = self.label2onehot(label_trg, self.c2_dim)
