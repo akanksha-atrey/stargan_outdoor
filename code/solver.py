@@ -146,37 +146,18 @@ class Solver(object):
         out[np.arange(batch_size), labels.long()] = 1
         return out
 
-    def create_labels(self, c_org, c_dim=5, dataset='CelebA', selected_attrs=None):
+    def create_labels(self, c_org, c_dim=5, dataset='RaFD', selected_attrs=None):
         """Generate target domain labels for debugging and testing."""
-        # Get hair color indices.
-        if dataset == 'CelebA':
-            hair_color_indices = []
-            for i, attr_name in enumerate(selected_attrs):
-                if attr_name in ['Black_Hair', 'Blond_Hair', 'Brown_Hair', 'Gray_Hair']:
-                    hair_color_indices.append(i)
-
         c_trg_list = []
-        for i in range(c_dim):
-            if dataset == 'CelebA':
-                c_trg = c_org.clone()
-                if i in hair_color_indices:  # Set one hair color to 1 and the rest to 0.
-                    c_trg[:, i] = 1
-                    for j in hair_color_indices:
-                        if j != i:
-                            c_trg[:, j] = 0
-                else:
-                    c_trg[:, i] = (c_trg[:, i] == 0)  # Reverse attribute value.
-            elif dataset == 'RaFD':
-                c_trg = self.label2onehot(torch.ones(c_org.size(0))*i, c_dim)
 
+        for i in range(c_dim):
+            c_trg = self.label2onehot(torch.ones(c_org.size(0))*i, c_dim)
             c_trg_list.append(c_trg.to(self.device))
+
         return c_trg_list
 
-    def classification_loss(self, logit, target, dataset='CelebA'):
-        """Compute binary or softmax cross entropy loss."""
-        if dataset == 'CelebA':
-            return F.binary_cross_entropy_with_logits(logit, target, size_average=False) / logit.size(0)
-        elif dataset == 'RaFD':
+    def classification_loss(self, logit, target, dataset='RaFD'):
+        """Compute softmax cross entropy loss."""
             return F.cross_entropy(logit, target)
 
     def train(self):
@@ -223,12 +204,8 @@ class Solver(object):
             rand_idx = torch.randperm(label_org.size(0))
             label_trg = label_org[rand_idx]
 
-            if self.dataset == 'CelebA':
-                c_org = label_org.clone()
-                c_trg = label_trg.clone()
-            elif self.dataset == 'RaFD':
-                c_org = self.label2onehot(label_org, self.c_dim)
-                c_trg = self.label2onehot(label_trg, self.c_dim)
+            c_org = self.label2onehot(label_org, self.c_dim)
+            c_trg = self.label2onehot(label_trg, self.c_dim)
 
             x_real = x_real.to(self.device)           # Input images.
             c_org = c_org.to(self.device)             # Original domain labels.
@@ -392,8 +369,8 @@ class Solver(object):
                 label_trg = label_org[rand_idx]
 
                 if dataset == 'CelebA':
-                    c_org = label_org.clone()
-                    c_trg = label_trg.clone()
+                    c_org = self.label2onehot(label_org, self.c_dim)
+                    c_trg = self.label2onehot(label_trg, self.c_dim)
                     zero = torch.zeros(x_real.size(0), self.c2_dim)
                     mask = self.label2onehot(torch.zeros(x_real.size(0)), 2)
                     c_org = torch.cat([c_org, zero, mask], dim=1)
