@@ -158,7 +158,7 @@ class Solver(object):
 
     def classification_loss(self, logit, target, dataset='RaFD'):
         """Compute softmax cross entropy loss."""
-            return F.cross_entropy(logit, target)
+        return F.cross_entropy(logit, target)
 
     def train(self):
         """Train StarGAN within a single dataset."""
