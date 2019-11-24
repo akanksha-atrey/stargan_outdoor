@@ -16,7 +16,7 @@ echo "Start running experiments"
 
 source ~/.bashrc ; source activate tf
 
-python code/run_placesCNN_unified.py
+python utils/run_placesCNN_unified.py
 
 echo "Done"
 

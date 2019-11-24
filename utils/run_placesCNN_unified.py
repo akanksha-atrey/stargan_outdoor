@@ -8,7 +8,7 @@ from torchvision import transforms as trn
 from torch.nn import functional as F
 import os
 import numpy as np
-from scipy.misc import imresize as imresize
+from scipy.misc import imresize
 # import cv2
 from PIL import Image
 import shutil
@@ -87,11 +87,12 @@ def returnTF():
 
 def load_model():
     # this model has a last conv feature map as 14x14
-
-    model_file = 'wideresnet18_places365.pth.tar'
+    file = 'wideresnet18_places365.pth.tar'
+    model_file = './utils/wideresnet18_places365.pth.tar'
+    prefix_path = ' -P ./utils/'
     if not os.access(model_file, os.W_OK):
-        os.system('wget http://places2.csail.mit.edu/models_places365/' + model_file)
-        os.system('wget https://raw.githubusercontent.com/csailvision/places365/master/wideresnet.py')
+        os.system('wget http://places2.csail.mit.edu/models_places365/' + file + prefix_path)
+        os.system('wget https://raw.githubusercontent.com/csailvision/places365/master/wideresnet.py' + prefix_path)
 
     import wideresnet
     model = wideresnet.resnet18(num_classes=365)
