@@ -17,8 +17,7 @@ echo "Start running experiments"
 source venv/bin/activate
 
 python code/main.py --mode train --dataset RaFD --c_dim 14 --rafd_image_dir data/transient_attributes/train --sample_dir stargan_seasonal/samples \
-		 --log_dir stargan_seasonal/logs --model_save_dir stargan_seasonal/models --result_dir stargan_seasonal/results \
-		 --selected_attrs daylight night sunrisesunset dawndusk sunny clouds fog storm snow spring summer autumn winter rain
+		 --log_dir stargan_seasonal/logs --model_save_dir stargan_seasonal/models --result_dir stargan_seasonal/results
 
 echo "Done"
 
