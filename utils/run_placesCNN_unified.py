@@ -161,6 +161,7 @@ for d in (train_dir, test_dir):
     else:
         outdoor_d = test_dir_outdoor
     city_dirs = next(os.walk(train_dir))[1] # Lists all the city folders
+
     for city_dir in city_dirs:
         print('Sorting images for city : '+city_dir)
         city_dir_path = os.path.join(train_dir, city_dir)
@@ -173,7 +174,7 @@ for d in (train_dir, test_dir):
             try:
                 if os.path.exists(os.path.join(city_dir_outdoor, file)):
                     continue
-                    
+
                 image_path = os.path.join(city_dir_path, file)
                 img = Image.open(image_path)
                 input_img = V(tf(img).unsqueeze(0))
