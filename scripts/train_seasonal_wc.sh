@@ -17,7 +17,7 @@ echo "Start running experiments"
 source venv/bin/activate
 
 python code/main.py --mode train --dataset Both --c_dim 14 --c2_dim 5 --celeba_image_dir data/transient_attributes/train \
-		--rafd_image_dir data/world_cities/train --sample_dir stargan_both_sc/samples --log_dir stargan_both_sc/logs \
+		--rafd_image_dir data/world_cities_outdoor/train --sample_dir stargan_both_sc/samples --log_dir stargan_both_sc/logs \
 		--model_save_dir stargan_both_sc/models --result_dir stargan_both_sc/results
 
 echo "Done"

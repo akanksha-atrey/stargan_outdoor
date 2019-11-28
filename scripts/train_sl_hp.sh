@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#SBATCH --job-name=train_sg_seasonal_hp
+#SBATCH --job-name=train_both_sl_hp
 #SBATCH --output=stargan_both_sl/res_%j.txt  # output file
 #SBATCH -e stargan_both_sl/res_%j.err        # File to which STDERR will be written
 #SBATCH --partition=titanx-long         	   # Partition to submit to
