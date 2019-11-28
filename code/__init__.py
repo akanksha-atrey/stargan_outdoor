@@ -7,3 +7,6 @@ TRANSIENT_DATA_ANNOTATIONS = DATA_PATH + 'transient_attributes' + os.sep + 'anno
 TRANSIENT_DATA_ATTRIBUTES = DATA_PATH + 'transient_attributes' + os.sep + 'annotations' + os.sep + 'attributes.txt'
  
 LANDMARK_DATA = DATA_PATH + 'landmarks'
+WC_DATA = DATA_PATH + 'world_cities'
+
+MODEL_PATH = './models'
