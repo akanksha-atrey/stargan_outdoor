@@ -15,6 +15,14 @@ torch.set_default_dtype(torch.float64)
 dtype = torch.float64
 print_every = 100
 
+"""
+Usage:
+	python resnet18.py --mode 'train' --n_class 2 --dataset 'world_cities' --pretrained False --lr 0.004 --epochs 100
+	python resnet18.py --mode 'train' --n_class 2 --dataset 'transient' --pretrained False --lr 0.004 --epochs 100
+	python resnet18.py --mode 'train' --n_class 2 --dataset 'landmarks' --pretrained True --lr 0.004 --epochs 100
+
+	python resnet18.py --mode 'test' --dataset 'world_cities' 
+"""
 
 def load_dataset(mode, img_dir):
 
@@ -224,6 +232,6 @@ if __name__ == '__main__':
 		trained_model_path = os.path.join(MODEL_PATH, dataset+'.pth')
 		test(trained_model_path, test_loader)
 
-		# python resnet18.py --mode 'train' --n_class 2 --dataset 'world_cities' --pretrained True --lr 0.004 --epochs 1
+
 
 	
