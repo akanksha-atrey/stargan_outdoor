@@ -17,11 +17,11 @@ echo "Start running experiments"
 
 source venv/bin/activate
 
-srun -N 1 --ntasks 1 python resnet18.py --mode 'train' --n_class 2 --dataset 'world_cities' --pretrained False --lr 0.004 --epochs 100 &
+srun -N 1 --ntasks 1 python code/resnet18.py --mode 'train' --n_class 5 --dataset 'world_cities' --pretrained False --lr 0.004 --epochs 100 &
 
-srun -N 1 --ntasks 1 python resnet18.py --mode 'train' --n_class 2 --dataset 'transient' --pretrained False --lr 0.004 --epochs 100 &
+srun -N 1 --ntasks 1 python code/resnet18.py --mode 'train' --n_class 14 --dataset 'transient' --pretrained False --lr 0.004 --epochs 100 &
 
-srun -N 1 --ntasks 1 python resnet18.py --mode 'train' --n_class 2 --dataset 'landmarks' --pretrained True --lr 0.004 --epochs 100 &
+srun -N 1 --ntasks 1 python code/resnet18.py --mode 'train' --n_class 7 --dataset 'landmarks' --pretrained True --lr 0.004 --epochs 100 &
 
 wait
 
