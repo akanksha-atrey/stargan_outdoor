@@ -16,12 +16,12 @@ echo "Start running experiments"
 
 source venv/bin/activate
 
-python code/main.py --mode test --dataset Both --c_dim 14 --c2_dim 5 --test_iters 100000 \
-					--celeba_image_dir data/transient_attributes/test --rafd_image_dir data/landmarks/test \
+python code/main.py --mode test --dataset Both --c_dim 7 --c2_dim 14 --test_iters 100000 \
+					--celeba_image_dir data/landmarks/test --rafd_image_dir data/transient_attributes/test \
 					--sample_dir 'stargan_both_sl/{1,15,15,1e-4,1e-4}/samples' \
 					--log_dir 'stargan_both_sl/{1,15,15,1e-4,1e-4}/logs' \
 					--model_save_dir 'stargan_both_sl/{1,15,15,1e-4,1e-4}/models' \
-					--result_dir 'stargan_both_sl/{1,15,15,1e-4,1e-4}/results'
+					--result_dir 'stargan_both_sl/{1,15,15,1e-4,1e-4}/results_landmarks'
 
 echo "Done"
 
