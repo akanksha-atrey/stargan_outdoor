@@ -1,0 +1,9 @@
+stargan_seasonal: {1,10,10,1e-5,1e-5}
+
+stargan_wc: {1,10,10,1e-4,1e-4} (orig)
+
+stargan_landmarks: {1,15,15,1e-4,1e-4}
+
+stargan_both_sc: {1,5,5,1e-5,1e-5}
+
+stargan_both_sl: {1,15,15,1e-4,1e-4}
