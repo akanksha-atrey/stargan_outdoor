@@ -11,8 +11,10 @@ import argparse
 landmarks = ['original', 'EdinburghCastle', 'EiffelTower', 'GoldenGateBridge', 'GrandCanyon', 'Masada', 'MountRainier', 'NiagaraFalls']
 world_cities = ['original', 'Amsterdam','Athens','Beijing', 'NewYork', 'Paris']
 transient = ['original', 'autumn','clouds','dawndusk','daylight','fog','night','rain','snow','spring','storm','summer','sunny','sunrisesunset', 'winter']
+both_sl = transient + landmarks[1:]
+both_sc = transient + world_cities[1:]
 
-dataset_names = {'landmarks': landmarks, 'world_cities': world_cities, 'transient':transient}
+dataset_names = {'landmarks': landmarks, 'world_cities': world_cities, 'transient':transient, 'both_sl':both_sl, 'both_sc':both_sc}
 
 res_for_resnet_dir = './results_resnet'
 
@@ -34,6 +36,12 @@ def get_single_imgs(dataset, results_dir, image, windowsize_r=128, windowsize_c=
 	res_dir = os.path.join(res_for_resnet_dir, dataset)
 	if not os.path.exists(res_dir):
 		os.mkdir(res_dir)
+
+	if dataset == 'both_sl' or dataset == 'both_sc':
+		both_dataset = results_dir.split('/')[-1].split('_')[-1]
+		res_dir = os.path.join(res_dir, both_dataset)
+		if not os.path.exists(res_dir):
+			os.mkdir(res_dir)
 
 	# Crop out the window
 	for r in range(0, image.shape[0], windowsize_r):
