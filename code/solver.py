@@ -517,8 +517,15 @@ class Solver(object):
 
                 # Translate images.
                 x_fake_list = [x_real]
-                for c_trg in c_trg_list:
-                    x_fake_list.append(self.G(x_real, c_trg))
+                for j, c_trg in enumerate(c_trg_list):
+                    fake_img = self.G(x_real, c_trg)
+                    x_fake_list.append(fake_img)
+
+                    # target_path = os.path.join(self.result_dir, str(j))
+                    # if not os.path.exists(target_path):
+                    #     os.mkdir(target_path)
+
+                    # save_image(self.denorm(fake_img.data.cpu()), '{}/img{}.png'.format(target_path, i+j+1))
 
                 # Save the translated images.
                 x_concat = torch.cat(x_fake_list, dim=3)
@@ -545,12 +552,27 @@ class Solver(object):
 
                 # Translate images.
                 x_fake_list = [x_real]
-                for c_celeba in c_celeba_list:
+                for j,c_celeba in enumerate(c_celeba_list):
                     c_trg = torch.cat([c_celeba, zero_rafd, mask_celeba], dim=1)
-                    x_fake_list.append(self.G(x_real, c_trg))
-                for c_rafd in c_rafd_list:
+                    fake_img = self.G(x_real, c_trg)
+                    x_fake_list.append(fake_img)
+
+                    # target_path = os.path.join(self.result_dir, str(j))
+                    # if not os.path.exists(target_path):
+                    #     os.mkdir(target_path)
+
+                    # save_image(self.denorm(fake_img.data.cpu()), '{}/img{}.png'.format(target_path, i+j+1))
+
+                for j,c_rafd in enumerate(c_rafd_list):
                     c_trg = torch.cat([zero_celeba, c_rafd, mask_rafd], dim=1)
-                    x_fake_list.append(self.G(x_real, c_trg))
+                    fake_img = self.G(x_real, c_trg)
+                    x_fake_list.append(fake_img)
+
+                    # target_path = os.path.join(self.result_dir, str(j))
+                    # if not os.path.exists(target_path):
+                    #     os.mkdir(target_path)
+
+                    # save_image(self.denorm(fake_img.data.cpu()), '{}/img{}.png'.format(target_path, i+j+1))
 
                 # Save the translated images.
                 x_concat = torch.cat(x_fake_list, dim=3)
