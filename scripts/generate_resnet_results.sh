@@ -21,7 +21,7 @@ srun -N 1 --ntasks 1 python utils/generate_test_imgs.py --dataset transient --re
 
 srun -N 1 --ntasks 1 python utils/generate_test_imgs.py --dataset landmarks --results_dir './stargan_landmarks/{1,15,15,1e-4,1e-4}/results' &
 
-srun -N 1 --ntasks 1 python utils/generate_test_imgs.py --dataset world_cities --results_dir './stargan_wc/{1,10,10,1e-4,1e-4}/results' &
+srun -N 1 --ntasks 1 python utils/generate_test_imgs.py --dataset world_cities --results_dir './stargan_wc/results' &
 
 srun -N 1 --ntasks 1 python utils/generate_test_imgs.py --dataset both_sl --results_dir './stargan_both_sl/{1,15,15,1e-4,1e-4}/results_seasonal' &
 

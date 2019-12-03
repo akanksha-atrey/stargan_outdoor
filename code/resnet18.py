@@ -226,12 +226,10 @@ if __name__ == '__main__':
 		train(model, dataset, train_loader, val_loader, config.epochs, config.lr)
 
 	else:
-		test_data_path = os.path.join(dataset_path[dataset], 'test')
+		test_data_path = os.path.join('./results_resnet', dataset)
 		test_loader = load_dataset(config.mode, test_data_path)
 
 		trained_model_path = os.path.join(MODEL_PATH, dataset+'.pth')
 		test(trained_model_path, test_loader)
-
-
 
 	
