@@ -58,6 +58,9 @@ def get_single_imgs(dataset, results_dir, image, windowsize_r=128, windowsize_c=
 			count+=1
 			img_count+=1
 
+		if img_count >= 12000:
+			break
+
 '''
 Iterate over all generated images in a particular dataset's results folder.
 
